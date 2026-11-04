@@ -24,6 +24,16 @@ import {
 type Pantalla = "inicio" | "detalle" | "datos" | "listo";
 const CUALQUIERA = "cualquiera";
 const DIAS_VISIBLES = 5;
+const PERIODOS = [
+  { nombre: "Mañana", desde: 0, hasta: 12 * 60 },
+  { nombre: "Tarde", desde: 12 * 60, hasta: 18 * 60 },
+  { nombre: "Noche", desde: 18 * 60, hasta: 24 * 60 },
+];
+/** 13:30 -> "1:30" (el periodo ya dice si es mañana o tarde) */
+const horaCorta = (min: number) => {
+  const h = Math.floor(min / 60) % 12 || 12;
+  return `${h}:${String(min % 60).padStart(2, "0")}`;
+};
 
 /** Fotos y textos por categoría. Cambia las fotos en /public/fotos. */
 const CATEGORIAS = [
@@ -373,10 +383,12 @@ export default function Reserva() {
                         setTurno(null);
                         setAviso(null);
                       }}
-                      className={`chip flex flex-col items-center py-2 ${d === fecha ? "chip-activo" : ""}`}
+                      className={`flex flex-col items-center rounded-xl border py-2 transition ${
+                        d === fecha ? "border-oscuro bg-oscuro text-hueso" : "border-acento/20 bg-white text-cafe hover:border-acento"
+                      }`}
                     >
-                      <span className="text-[11px] text-cafe/60">{c.dia}</span>
-                      <span className="text-base">{c.numero}</span>
+                      <span className={`text-[10px] tracking-wider uppercase ${d === fecha ? "text-hueso/70" : "text-cafe/50"}`}>{c.dia}</span>
+                      <span className="font-serif text-xl leading-tight">{c.numero}</span>
                     </button>
                   );
                 })}
@@ -402,16 +414,38 @@ export default function Reserva() {
                 No hay horas libres este día. Prueba con otro.
               </p>
             ) : (
-              <div className="grid grid-cols-4 gap-2">
-                {turnos.map((t) => (
-                  <button
-                    key={t.inicio}
-                    onClick={() => setTurno(t)}
-                    className={`chip rounded-full py-2.5 text-[13px] ${turno?.inicio === t.inicio ? "chip-activo" : ""}`}
-                  >
-                    {hora12(t.inicio)}
-                  </button>
-                ))}
+              <div className="space-y-5">
+                {PERIODOS.map(({ nombre: periodo, desde, hasta }) => {
+                  const lista = turnos.filter((t) => t.inicio >= desde && t.inicio < hasta);
+                  if (!lista.length) return null;
+                  return (
+                    <div key={periodo}>
+                      <div className="mb-2 flex items-center gap-3">
+                        <span className="text-[10px] font-medium tracking-[0.3em] text-acento uppercase">{periodo}</span>
+                        <span className="h-px flex-1 bg-acento/20" />
+                        <span className="text-[11px] text-cafe/40">{lista.length} libres</span>
+                      </div>
+                      <div className="grid grid-cols-5 gap-1.5">
+                        {lista.map((t) => {
+                          const activo = turno?.inicio === t.inicio;
+                          return (
+                            <button
+                              key={t.inicio}
+                              onClick={() => setTurno(t)}
+                              className={`rounded-lg border py-1.5 text-[13px] tabular-nums transition ${
+                                activo
+                                  ? "border-oscuro bg-oscuro font-medium text-hueso"
+                                  : "border-acento/20 bg-white text-cafe hover:border-acento"
+                              }`}
+                            >
+                              {horaCorta(t.inicio)}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             )}
           </section>

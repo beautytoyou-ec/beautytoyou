@@ -1,7 +1,8 @@
 import { aMinutos, diaSemana, hoyEcuador, instante, sumarDias } from "./tiempo";
 import type { Horario, Ocupado, Profesional } from "./tipos";
 
-export const INTERVALO_MIN = 15;
+/** Cada cuánto se ofrecen horas (minutos). */
+export const INTERVALO_MIN = 30;
 /** Anticipación mínima para reservar (minutos). */
 export const ANTICIPACION_MIN = 60;
 export const DIAS_A_MOSTRAR = 30;
