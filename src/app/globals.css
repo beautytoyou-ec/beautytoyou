@@ -1,26 +1,47 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  /* Colores del logo */
+  --color-crema: #f4ece3;
+  --color-hueso: #fbf7f2;
+  --color-arena: #eadccd;
+  --color-acento: #a89584;
+  --color-cafe: #4a3b30;
+  --color-oscuro: #2b211b;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Jost", system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-crema);
+  color: var(--color-cafe);
+  font-family: var(--font-sans);
+}
+
+@layer components {
+  .etiqueta {
+    @apply mb-3 text-[15px] font-medium text-cafe;
+  }
+  .chip {
+    @apply rounded-2xl border border-acento/25 bg-white text-cafe transition;
+  }
+  .chip-activo {
+    @apply border-acento bg-arena font-medium;
+  }
+  .campo {
+    @apply w-full rounded-2xl border border-acento/30 bg-white px-4 py-3.5 text-base text-cafe outline-none placeholder:text-cafe/35 focus:border-cafe;
+  }
+  .boton-oscuro {
+    @apply flex w-full items-center justify-between rounded-full bg-oscuro py-2 pr-2 pl-7 font-medium text-hueso transition hover:bg-cafe disabled:opacity-40;
+  }
+  .flecha {
+    @apply grid size-11 place-items-center rounded-full;
+  }
+}
+
+.sin-barra {
+  scrollbar-width: none;
+}
+.sin-barra::-webkit-scrollbar {
+  display: none;
 }

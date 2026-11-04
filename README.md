@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Beauty to You · Agenda tu cita
 
-## Getting Started
+Página para reservar citas del estudio Beauty to You (uñas, cejas y pestañas) en Portoviejo.
+Hecha con Next.js, Tailwind y Supabase. Zona horaria: America/Guayaquil.
 
-First, run the development server:
+## Cómo funciona
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. La clienta elige categoría y servicio.
+2. Elige con quién (Andrea, Paulina o "Cualquiera"), el día y una hora libre (cada 15 min).
+3. Deja su nombre y WhatsApp y confirma.
+4. Ve su cita confirmada y puede avisar al estudio por WhatsApp (097 865 3077).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Las horas libres salen del horario de atención, la duración del servicio y la función `ocupados()` de Supabase.
+Si dos personas eligen la misma hora a la vez, la base de datos rechaza la segunda y la página le pide elegir otra.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Configuración
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Copia `.env.example` como `.env.local` y pon la **Project URL** y la clave **anon public**
+   (Supabase → Project Settings → API).
+2. `npm install` y `npm run dev`.
 
-## Learn More
+En Vercel, agrega las mismas variables en Settings → Environment Variables.
 
-To learn more about Next.js, take a look at the following resources:
+## Base de datos
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `supabase/01_tablas_y_reservas.sql`: tablas, datos iniciales y reglas públicas (ya ejecutado).
+- `supabase/02_admin_politicas.sql`: reglas para el panel `/admin` (ejecutar antes de crear el panel).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Personalizar
 
-## Deploy on Vercel
+- **Fotos:** reemplaza los archivos de `public/fotos/` (`portada.jpg`, `unas.jpg`, `rostro.jpg`) por fotos reales del estudio, con el mismo nombre.
+- **Textos de categorías:** `src/components/Reserva.tsx`, constante `CATEGORIAS`.
+- **WhatsApp e Instagram:** `src/lib/negocio.ts`.
+- **Anticipación mínima y días que se muestran:** `src/lib/horarios.ts`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Pendiente
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Panel `/admin`: agenda del día y la semana, cancelar citas, editar servicios, precios, duraciones y horarios, y bloqueos.
