@@ -74,3 +74,19 @@ export const Destello = ({ className = "size-5" }: P) => (
     <path d="M19 16l.6 1.9 1.9.6-1.9.6L19 21l-.6-1.9-1.9-.6 1.9-.6z" />
   </svg>
 );
+
+export const Corazon = ({ className = "size-4", lleno = false }: P & { lleno?: boolean }) => (
+  <svg {...base} fill={lleno ? "currentColor" : "none"} className={className}>
+    <path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z" />
+  </svg>
+);
+export const Mas = ({ className = "size-4" }: P) => (
+  <svg {...base} className={className}>
+    <path d="M12 6v12M6 12h12" />
+  </svg>
+);
+export const Check = ({ className = "size-4" }: P) => (
+  <svg {...base} strokeWidth={2} className={className}>
+    <path d="M5 12.5l4.5 4.5L19 7.5" />
+  </svg>
+);

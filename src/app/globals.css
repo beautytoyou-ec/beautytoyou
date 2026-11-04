@@ -23,7 +23,7 @@ body {
     @apply mb-3 text-[15px] font-medium text-cafe;
   }
   .chip {
-    @apply rounded-2xl border border-acento/25 bg-white text-cafe transition;
+    @apply rounded-2xl border border-white/80 bg-white/70 text-cafe transition;
   }
   .chip-activo {
     @apply border-acento bg-arena font-medium;
@@ -33,6 +33,12 @@ body {
   }
   .boton-oscuro {
     @apply flex w-full items-center justify-between rounded-full bg-oscuro py-2 pr-2 pl-7 font-medium text-hueso transition hover:bg-cafe disabled:opacity-40;
+  }
+  .vidrio {
+    @apply border border-white/70 bg-white/55 shadow-[0_10px_40px_rgba(74,59,48,0.10)] backdrop-blur-2xl;
+  }
+  .boton-glass {
+    @apply grid size-11 place-items-center rounded-full border border-white/40 bg-white/25 text-hueso backdrop-blur-md;
   }
   .flecha {
     @apply grid size-11 place-items-center rounded-full;
