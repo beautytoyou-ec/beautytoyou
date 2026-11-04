@@ -83,7 +83,9 @@ export default function Reserva() {
         setHorarios(h.data as Horario[]);
       } catch (e) {
         console.error(e);
-        setErrorCarga("No pudimos cargar la agenda. Intenta de nuevo en un momento.");
+        const detalle =
+          e instanceof Error ? e.message : typeof e === "object" && e && "message" in e ? String(e.message) : String(e);
+        setErrorCarga(`No pudimos cargar la agenda. Intenta de nuevo en un momento. (${detalle})`);
       } finally {
         setCargando(false);
       }
