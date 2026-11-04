@@ -15,11 +15,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: titulo,
     description: descripcion,
+    url: "/",
+    images: [{ url: "/compartir.jpg", width: 1200, height: 630, alt: "Beauty to You", type: "image/jpeg" }],
     siteName: "Beauty to You",
     locale: "es_EC",
     type: "website",
   },
-  twitter: { card: "summary_large_image", title: titulo, description: descripcion },
+  twitter: { card: "summary_large_image", title: titulo, description: descripcion, images: ["/compartir.jpg"] },
 };
 
 export const viewport: Viewport = {
