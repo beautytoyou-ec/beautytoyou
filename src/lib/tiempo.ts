@@ -69,3 +69,20 @@ export function duracionTexto(min: number): string {
   if (m === 0) return h === 1 ? "1 hora" : `${h} horas`;
   return `${h} h ${m} min`;
 }
+
+/** ISO -> "YYYY-MM-DD" en hora de Ecuador. */
+export function fechaDe(iso: string): string {
+  return new Date(new Date(iso).getTime() - OFFSET_MS).toISOString().slice(0, 10);
+}
+
+/** ISO -> minutos desde medianoche en hora de Ecuador. */
+export function minutosDe(iso: string): number {
+  const d = new Date(new Date(iso).getTime() - OFFSET_MS);
+  return d.getUTCHours() * 60 + d.getUTCMinutes();
+}
+
+/** Lunes de la semana de una fecha "YYYY-MM-DD". */
+export function lunesDe(fecha: string): string {
+  const ds = diaSemana(fecha);
+  return sumarDias(fecha, ds === 0 ? -6 : 1 - ds);
+}

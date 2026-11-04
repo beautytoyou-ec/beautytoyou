@@ -49,10 +49,13 @@ export const WhatsApp = ({ className = "size-5" }: P) => (
 
 /* Categorías */
 export const IconoUnas = ({ className = "size-7" }: P) => (
-  <svg {...base} className={className}>
-    <path d="M8 21v-6.5a1.5 1.5 0 013 0V9.5a1.5 1.5 0 013 0v5" />
-    <path d="M14 11.5a1.5 1.5 0 013 0v3.5a6 6 0 01-6 6H10a4 4 0 01-3.3-1.8L5 16.5a1.4 1.4 0 012.2-1.7L8 16" />
-    <path d="M11 6.5c0-1.5.7-3 1.5-3S14 5 14 6.5" />
+  <svg {...base} strokeWidth={1.3} className={className}>
+    {/* frasco de esmalte con un brillo */}
+    <path d="M10.3 2.5h3.4a.8.8 0 01.8.8V8h-5V3.3a.8.8 0 01.8-.8z" />
+    <path d="M9 8h6v2.6H9z" />
+    <path d="M6.8 14a3.4 3.4 0 013.4-3.4h3.6a3.4 3.4 0 013.4 3.4v4.1a3.4 3.4 0 01-3.4 3.4h-3.6a3.4 3.4 0 01-3.4-3.4z" />
+    <path d="M9.6 14.2v3.4" />
+    <path d="M19.4 3.6l.35 1.05 1.05.35-1.05.35-.35 1.05-.35-1.05L18 5l1.05-.35z" />
   </svg>
 );
 export const IconoCejas = ({ className = "size-7" }: P) => (

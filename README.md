@@ -24,7 +24,22 @@ En Vercel, agrega las mismas variables en Settings → Environment Variables.
 ## Base de datos
 
 - `supabase/01_tablas_y_reservas.sql`: tablas, datos iniciales y reglas públicas (ya ejecutado).
-- `supabase/02_admin_politicas.sql`: reglas para el panel `/admin` (ejecutar antes de crear el panel).
+- `supabase/02_admin_politicas.sql`: reglas del panel `/admin` y lista de correos con acceso.
+- `supabase/03_aviso_correo.sql`: avisa por correo cada cita nueva (cambiar `TU_SECRETO` antes de ejecutar).
+
+## Panel del estudio (`/admin`)
+
+Agenda del día y de la semana, cancelar citas, editar servicios (nombre, duración, precio, visible),
+horario de atención y bloqueos (feriados, vacaciones, permisos).
+
+Acceso: crear el usuario en Supabase → Authentication → Users → Add user (correo y contraseña)
+y agregar ese correo a la tabla `administradoras`.
+
+## Aviso por correo
+
+Variables en Vercel: `RESEND_API_KEY`, `AVISO_EMAIL` (uno o varios correos separados por coma),
+`AVISO_SECRETO` (el mismo texto que en el SQL). Sin dominio propio, Resend solo envía al correo
+con el que se creó la cuenta de Resend.
 
 ## Personalizar
 
@@ -35,4 +50,4 @@ En Vercel, agrega las mismas variables en Settings → Environment Variables.
 
 ## Pendiente
 
-- Panel `/admin`: agenda del día y la semana, cancelar citas, editar servicios, precios, duraciones y horarios, y bloqueos.
+- Enlace para que la clienta cambie de día o cancele su cita.
