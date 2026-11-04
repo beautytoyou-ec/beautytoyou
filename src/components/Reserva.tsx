@@ -259,11 +259,11 @@ export default function Reserva() {
               <div className="absolute inset-x-0 bottom-0 p-6 text-hueso">
                 <p className="text-[10px] tracking-[0.45em] text-hueso/75 uppercase">Beauty Studio · Portoviejo</p>
                 <h1 className="mt-3 font-serif text-[2.9rem] leading-[1.02]">
-                  Cuidarte
+                  Hoy es un
                   <br />
-                  te queda
+                  buen día para
                   <br />
-                  precioso <span className="text-acento">♥</span>
+                  consentirte <span className="text-acento">♥</span>
                 </h1>
                 <p className="mt-3 max-w-[16rem] text-sm text-hueso/70">Uñas, cejas y pestañas con detalle. Agenda en un minuto.</p>
                 <button
